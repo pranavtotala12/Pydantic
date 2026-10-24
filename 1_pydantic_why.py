@@ -4,16 +4,18 @@ from typing import List, Dict, Annotated
 class Patient(BaseModel):
     name:Annotated[str, Field(max_length=50,title="Name of the patient",description="Give the name of the patient in less that 50 chars",examples=["Pranav","Gauri"])]
     age:int = Field(gt=0,lt=120)                
-        #Age must be greater than 0 and less tha 120
     email:EmailStr
     linkedin_url:AnyUrl
     weight: Annotated[float, Field(gt=0,strict=True)]                  
-        #weight must be greater that 0
     married:Annotated[bool,Field(default=None,description="Patient is married or not")]
-        #married is optional now
     allergies: Annotated[List[str], Field(default=None,max_length=5)] 
-        #list not write becouse we need list of strings not only list, and maximum only 5 allergies
-    contact_details:Dict[str,str]               #same for Dict need dict of str type
+    contact_details:Dict[str,str]               
+
+    #Age must be greater than 0 and less tha 120
+    #weight must be greater that 0
+    #married is optional now
+    #list not write becouse we need list of stringSs not only list, and maximum only 5 allergies
+    #same for Dict need dict of str type
 
 
 def insert_patient_data(patient:Patient):
